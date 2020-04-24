@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Text Classification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function clear_result() {
+            $('.result').text('')
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Text Classification</h2>
+    <p>Detect label of your document</p>
+    <form method="post">
+        <div class="form-group">
+            <label for="document">Enter document:</label>
+            <textarea class="form-control" rows="5" name="document" id="document"></textarea>
+            <input type="submit" value="Submit" class="btn btn-success btn-lg" style="margin-top: 20px;">
+            <input type="reset" value="Reset" class="btn btn-default btn-lg" style="margin-top: 20px;" onclick="clear_result()">
+        </div>
+    </form>
+    <div class="result">
+        {% if document %}
+            <h3>Your document:</h3>
+                {{ document }}
+            {% endif %}
+        <strong id="result">
+            {% if message %}
+            <h3>Check result:</h3>
+                {{ message }}
+            {% endif %}
+        </strong>
+        <strong id="real_result">
+            {% if real_result %}
+            <h3>Real result:</h3>
+                {{ real_result }}
+            {% endif %}
+        </strong>
+    </div>
+</div>
+<div class="container" style="margin-top:20px;">
+    <p>Author: Nam ND.</p>
+    <p>Giảng viên hướng dẫn: PGS.TS Lê Thanh Hương.</p>
+</div>
+<footer class="row">
+      <div class="col-sm-12 col-md-10 col-md-offset-1" style="text-align:center;">
+        Bài tập lớn kì 20191 - ĐHBKHN | &copy; 2019 | <a href="https://www.facebook.com/nam.nd.92"> Nguyễn Danh
+          Nam</a>
+      </div>
+    </footer>
+</body>
+</html>
