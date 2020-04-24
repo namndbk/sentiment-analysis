@@ -52,3 +52,6 @@ def api():
 #     model = pickle.load(open("models/modelv1/svm", "rb"))
 #     transform = pickle.load(open("models/modelv1/transform", "rb"))
 #     app.run()
+
+if __name__ == '__main__':
+	app.run()
