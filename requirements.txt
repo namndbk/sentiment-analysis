@@ -1,0 +1,7 @@
+flask
+pandas
+numpy
+ftfy
+scikit-learn
+unidecode
+gunicorn
