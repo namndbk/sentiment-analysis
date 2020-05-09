@@ -15,15 +15,14 @@ from sklearn.externals import joblib
 
 import time, os, json
 import numpy as np
-import scipy
 
 from collections import Counter
 
 
 class EnsembelModel:
-    def __init__(self, score, cross_validation=3):
+    def __init__(self, cross_validation=3):
         self.cross_validation = cross_validation
-        self.score = score
+        # self.score = score
         self.models = {}
         self.n_models = 0
     
@@ -67,12 +66,12 @@ class EnsembelModel:
         y_rate = []
         for i, c in enumerate(result):
             pred = Counter(c).most_common(1)[0]
-            rate = int(c[pred]) / self.n_models
-            y_pred.append(pred)
+            rate = pred[-1] / self.n_models
+            y_pred.append(pred[0])
             y_rate.append(rate)
         test_time = time.time() - t0
         print("\tTest time: {:.4f}s".format(test_time))
-        return y_pred, y_rate
+        return np.array(y_pred), np.array(y_rate)
 
 
     def save_model(self, folder_path):

@@ -1,0 +1,10 @@
+version: "3.6"
+
+services:
+    app:
+        image: sentiment-analysis/python:v1
+        ports:
+            - "5005:6666"
+        restart: unless-stopped
+        environment:
+          PORT: 6666

@@ -3,6 +3,10 @@ import pandas as pd
 from random import shuffle
 
 
+import warnings
+warnings.filterwarnings('ignore')
+
+
 def load_data(file_path):
     df = pd.read_json(file_path)
     # df = shuffle(df)

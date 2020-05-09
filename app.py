@@ -4,7 +4,9 @@ from sklearn.svm import LinearSVC
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 from utils.preprocess import normalize_text
+
 import pickle
+import os
 
 
 app = Flask(__name__)
@@ -54,4 +56,4 @@ def api():
 #     app.run()
 
 if __name__ == '__main__':
-	app.run()
+	app.run(host="0.0.0.0", port=os.environ['PORT'])
