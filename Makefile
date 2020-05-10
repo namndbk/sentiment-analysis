@@ -2,7 +2,7 @@ VERSION: 1.0
 AUTHOR: NamND
 
 build-docker-images:
-	docker build -t sentiment-analysis/python:v2 .
+	docker build -t sentiment-analysis/python:v1 .
 
 project-setup:
 	pip install -r requirements.txt
