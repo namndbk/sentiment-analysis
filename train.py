@@ -33,12 +33,20 @@ print(X.shape[0])
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2020)
 X_train = normalize(X_train)
 X_test = normalize(X_test)
-from collections import Counter
-print(Counter(y))
 
-# transform = TfidfVectorizer()
+
+# transform = TfidfVectorizer(max_df=0.65)
 # X_train = transform.fit_transform(X_train)
 # X_test = transform.transform(X_test)
+# estimator = LinearSVC(C=0.3)
+# clf = Classifier(estimator=estimator)
+# clf.fit(X_train, y_train)
+# y_pred = clf.predict(X_test)
+# print(accuracy_score(y_test, y_pred))
+# print(confusion_matrix(y_test, y_pred))
+# print(classification_report(y_test, y_pred, labels=["good", "bad"]))
+
+
 
 # C = 0.1
 # while C <= 0.5:
@@ -51,26 +59,26 @@ print(Counter(y))
 #     print(classification_report(y_test, y_pred, labels=["good", "bad"]))
 #     C += 0.1
 # import pickle
-# a = 0.01
-# while a <= 0.1:
-#     df = 0.1
-#     while df <= 0.6:
-#         train = copy.deepcopy(X_train)
-#         test = copy.deepcopy(X_test)
-#         transform = TfidfVectorizer(max_df=df)
-#         train = transform.fit_transform(train)
-#         test = transform.transform(test)
-#         estimator = MultinomialNB(alpha=a)
-#         print((a, df))
-#         clf = Classifier(estimator=estimator)
-#         clf.fit(train, y_train)
+a = 0.1
+while a <= 0.5:
+    df = 0.1
+    while df <= 1.0:
+        train = copy.deepcopy(X_train)
+        test = copy.deepcopy(X_test)
+        transform = TfidfVectorizer(max_df=df, ngram_range=(1, 2))
+        train = transform.fit_transform(train)
+        test = transform.transform(test)
+        estimator = MultinomialNB(alpha=a)
+        print((a, df))
+        clf = Classifier(estimator=estimator)
+        clf.fit(train, y_train)
 
-#         y_pred = clf.predict(test)
-#         print(accuracy_score(y_test, y_pred))
-#         print(confusion_matrix(y_test, y_pred))
-#         print(classification_report(y_test, y_pred, labels=["good", "bad"]))
-#         df += 0.1
-#     a += 0.01
+        y_pred = clf.predict(test)
+        print(accuracy_score(y_test, y_pred))
+        print(confusion_matrix(y_test, y_pred))
+        print(classification_report(y_test, y_pred, labels=["good", "bad"]))
+        df += 0.1
+    a += 0.1
 # with open("models/naivebayes/svm", "wb") as f:
 #     pickle.dump(clf, f)
 # with open("models/naivebayes/transform", "wb") as f:
